@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pano Carousel</title>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+	<script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@3.x.x/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.x.x/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-slice9-component/dist/aframe-slice9-component.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+            <!--Pano Images-->
+            <img id="pano1" src="assets/img/pano/pano1.jpg"/>
+            <img id="pano2" src="assets/img/pano/pano2.jpg"/>
+            <!--Icons-->
+            <img id="prev" src="assets/img/icons/prev.png">
+            <img id="next" src="assets/img/icons/next.png">
+            <!--Script-->
+			  <script id="circle" type="text/html">
+                <a-entity class="link" geometry="primitive: circle; radius: 1" material="side: double; src: ${thumb}"></a-entity>
+            </script>
+        </a-assets>
+        <!--load pano img to screen-->
+        <a-entity class="slider_entity">
+            <a-entity layout="type: line;" class="show_slide" scale="1 1 1" position="0 0 -8">            
+                <a-sky id="entrance" src="#pano1" rotation="10 200 -10" data-index="0"></a-sky>            
+            </a-entity>
+            <!--a-entity layout="type: line;" class="show_slide" scale="1 1 1" position="0 0 -8">            
+                <a-sky id="entrance" src="#pano2" rotation="10 200 -10" data-index="0"></a-sky>            
+            </a-entity>
+            <a-entity layout="type: line;" class="show_slide" scale="1 1 1" position="0 0 -8">            
+                <a-sky id="entrance" src="#pano3" rotation="10 200 -10" data-index="0"></a-sky>            
+            </a-entity-->
+        </a-entity>
+        
+        <!--Carousel Buttons-->
+        <a-entity enter look-controls id="slider_button" visible="true">
+            <a-entity layout="type: line; margin: 1.5" scale="0.4 0.4 0.4" position="-12 1 -8" width="2.5">
+                <a-entity id="prev_button" onclick="nextSlide(1)" template="src: #circle" data-src="#prev" data-thumb="#prev"></a-entity>
+            </a-entity>
+            <a-entity layout="type: line; margin: 1.5" scale="0.4 0.4 0.4" position="12 1 -8" width="2.5">
+                <a-entity id="next_button" onclick="nextSlide(-1)" template="src: #circle" data-src="#next" data-thumb="#next"></a-entity>
+            </a-entity>       
+        </a-entity>
+    </a-scene>
+</body>
+</html>
